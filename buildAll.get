@@ -10,6 +10,8 @@ cd thirdparty/linux/
 bash all.get
 cd ../../
 cd libsodium-stable
+sh autogen.sh
+./configure
 make -j
 cd ..
 cmake .  
