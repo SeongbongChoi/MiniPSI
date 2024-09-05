@@ -5,18 +5,17 @@
 *.suo
 *.user
 *.sln.docstates
-.vs/
+*.vs
 
 CMakeFiles/*
-*Makefile*
-*install_manifest.txt*
 */CMakeFiles/*
 *cmake_install.cmake
 
 CMakeCache.txt
 */CMakeCache.txt
 
-
+*.a
+ 
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
@@ -42,7 +41,6 @@ TestResult.xml
 [Dd]ebugPS/
 [Rr]eleasePS/
 dlldata.c
-*.opendb
 
 *_i.c
 *_p.c
@@ -200,11 +198,24 @@ GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
 /WeGarbleTests__
-kProbe_data_*
-
-*.VC.db
+/thirdparty
+kProbe_*
 
 CodeDB
 LinuxFrontEnd/VisualGDBCache
+*.opendb
+*.pdf
+*.db
+*.sln
+
+mpsi.VC*
+
+/psir_8s.txt
+/psis_8s.txt
+
 testout.txt
-lib
+online.txt
+offline.txt
+Makefile
+
+[path to project]/node_modules/
