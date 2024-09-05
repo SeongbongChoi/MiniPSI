@@ -385,6 +385,8 @@ namespace osuCrypto
 		const std::vector<Point>& getGenerators() const;
 		const EccNumber& getOrder() const;
 		const EccNumber& getFieldPrime() const;
+		bool isPrimeField() { return mIsPrimeField; };
+		
 
 
 		u64 bitCount()const;
