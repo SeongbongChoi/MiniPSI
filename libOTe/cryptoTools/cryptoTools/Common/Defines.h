@@ -58,6 +58,7 @@ namespace osuCrypto {
     inline block toBlock(u8*data) { return _mm_set_epi64x(((u64*)data)[1], ((u64*)data)[0]);}
     inline block toBlock(u64 low_u64)        { return _mm_set_epi64x(0, low_u64); }
     inline block toBlock(u64 high_u64, u64 low_u64) { return _mm_set_epi64x(high_u64, low_u64); }
+    inline block toBlock(const std::uint8_t* data) { return toBlock(((std::uint64_t*)data)[1], ((std::uint64_t*)data)[0]); }
 
     extern const block ZeroBlock;
     extern const block OneBlock;
