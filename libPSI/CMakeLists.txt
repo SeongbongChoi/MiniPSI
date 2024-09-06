@@ -187,6 +187,5 @@ target_include_directories(libPSI PUBLIC ${GMP_Include_Dirs})
 target_include_directories(libPSI PUBLIC ${GF2X_Include_Dirs})
 target_include_directories(libPSI PUBLIC ${SODIUM_Include_Dirs})
 target_include_directories(libPSI PUBLIC ${CMAKE_SOURCE_DIR}/libPSI) 
-target_include_directories(libPSI PUBLIC ${CMAKE_SOURCE_DIR}/libPSI) 
 
 target_link_libraries(libPSI ${libOTe_LIB}  ${cryptoTools_LIB} ${MIRACL_LIB}  ${Boost_LIBRARIES} ${NTL_LIB} ${GMP_LIB} ${GF2X_LIB} ${SODIUM_LIB})
