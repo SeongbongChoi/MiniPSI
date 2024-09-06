@@ -88,28 +88,35 @@ message(status "gf2x ${GF2X_Lib_Dirs}")
 ##############################################
 ##                 Link SODIUM                  #
 ##############################################
-set(SODIUM_Lib_Dirs "${SODIUM_Dirs}bin/lib/")
-set(SODIUM_Include_Dirs "${SODIUM_Dirs}bin/include/")
-  find_library(
-    SODIUM_LIB 
-    names sodium libsodium.a  
-    paths "${SODIUM_Lib_Dirs}")
-  
-  # if we still cant fint it, throw an error
-  if(NOT SODIUM_LIB) 
-	if(EXISTS "${SODIUM_Lib_Dirs}libsodium.a")
-		set(SODIUM_LIB "${SODIUM_Lib_Dirs}libsodium.a")
-	else()
-	   message(${SODIUM_LIB})
-		message(fatal_error "failed to find gf2x at ${SODIUM_Lib_Dirs} or at system locations." )
-	endif()
+# Set default location for SODIUM
+set(SODIUM_Dirs "${CMAKE_SOURCE_DIR}/libsodium-stable/")
+
+# Set the library and include directories
+set(SODIUM_Lib_Dirs "${SODIUM_Dirs}/lib/")
+set(SODIUM_Include_Dirs "${SODIUM_Dirs}/include/")
+
+# Include the directory for headers
+include_directories("${SODIUM_Include_Dirs}")
+
+# Find the libsodium library
+find_library(
+  SODIUM_LIB
+  NAMES sodium
+  PATHS "${SODIUM_Lib_Dirs}")
+
+# If the library is not found, manually check if it exists in the expected location
+if(NOT SODIUM_LIB)
+  if(EXISTS "${SODIUM_Lib_Dirs}/libsodium.a")
+    set(SODIUM_LIB "${SODIUM_Lib_Dirs}/libsodium.a")
+  else()
+    message(FATAL_ERROR "Failed to find libsodium at ${SODIUM_Lib_Dirs} or system locations.")
   endif()
-#endif()
+endif()
 
-message(status "sodium  ${SODIUM_LIB}")
-message(status "sodium ${SODIUM_Include_Dirs}")
-message(status "sodium ${SODIUM_Lib_Dirs}")
-
+# Print status messages for debugging
+message(STATUS "sodium library: ${SODIUM_LIB}")
+message(STATUS "sodium include directory: ${SODIUM_Include_Dirs}")
+message(STATUS "sodium lib directory: ${SODIUM_Lib_Dirs}")
 
 #############################################
 #                 Link Boost                #
