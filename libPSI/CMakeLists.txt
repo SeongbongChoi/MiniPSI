@@ -103,17 +103,23 @@ message(STATUS "sodium lib directory: ${SODIUM_Lib_Dirs}")
 #############################################
 #                 Link Boost                #
 #############################################
-set(Boost_USE_STATIC_LIBS ON)
-set(Boost_USE_MULTITHREADED ON)
-set(Boost_USE_STATIC_RUNTIME ON)
 
-find_package(Boost COMPONENTS system thread)
+# Boost 라이브러리의 기본 경로 설정
+set(BOOST_ROOT "${libOTe_Dirs}/cryptoTools/thirdparty/linux/boost/")
+set(BOOST_INCLUDEDIR "${BOOST_ROOT}/stage/include")
+set(BOOST_LIBRARYDIR "${BOOST_ROOT}/stage/lib")
 
-if(Boost_FOUND)
-  message(STATUS "Found Boost at ${Boost_LIBRARIES}")
+set(Boost_NO_BOOST_CMAKE ON)
+
+find_package(Boost 1.65.1 REQUIRED COMPONENTS system thread)
+
+if (Boost_FOUND)
+    include_directories(${Boost_INCLUDE_DIRS})
+    link_directories(${Boost_LIBRARY_DIRS})
 else()
-  message(FATAL_ERROR "Failed to find Boost. Need system and thread components.")
+    message(FATAL_ERROR "Failed to find Boost at ${BOOST_ROOT}")
 endif()
+ 
 
 #############################################
 #                 Link Miracl               #
