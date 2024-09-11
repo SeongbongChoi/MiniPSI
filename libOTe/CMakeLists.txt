@@ -3,6 +3,19 @@ cmake_minimum_required (VERSION 2.8)
 project(libOTe)
 
 # default location for Boost
+set(BOOST_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/cryptoTools/thirdparty/linux/boost")
+set(Boost_INCLUDE_DIRS "${BOOST_ROOT}/stage/include")
+set(Boost_LIBRARY_DIRS "${BOOST_ROOT}/stage/lib")
+set(Boost_NO_SYSTEM_PATHS ON)
+
+find_package(Boost 1.66 REQUIRED COMPONENTS system thread NO_DEFAULT_PATH)
+
+if (Boost_FOUND)
+    include_directories(${Boost_INCLUDE_DIRS})
+    link_directories(${Boost_LIBRARY_DIRS})
+else()
+    message(FATAL_ERROR "Failed to find Boost at ${BOOST_ROOT}")
+endif()
 
 if("${CMAKE_CURRENT_SOURCE_DIR}" STREQUAL "${CMAKE_SOURCE_DIR}")
 
@@ -53,19 +66,7 @@ if("${CMAKE_CURRENT_SOURCE_DIR}" STREQUAL "${CMAKE_SOURCE_DIR}")
 
 endif()
 
-set(BOOST_ROOT "${CMAKE_SOURCE_DIR}/cryptoTools/thirdparty/linux/boost")
-set(Boost_NO_SYSTEM_PATHS ON)
 
-find_package(Boost 1.66 REQUIRED COMPONENTS system thread)
-
-if (Boost_FOUND)
-    include_directories(${Boost_INCLUDE_DIRS})
-    link_directories(${Boost_LIBRARY_DIRS})
-else()
-    message(FATAL_ERROR "Failed to find Boost")
-endif()
-
- 
 
 #############################################
 #    Build cryptoTools (common utilities)   #
