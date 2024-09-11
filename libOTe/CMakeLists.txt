@@ -55,7 +55,7 @@ set(BOOST_LIBRARYDIR "${BOOST_ROOT}/stage/lib")
 
 set(Boost_NO_BOOST_CMAKE ON)
 
-find_package(Boost 1.66 REQUIRED COMPONENTS system thread)
+find_package(Boost 1.65.1 REQUIRED COMPONENTS system thread)
 
 if (Boost_FOUND)
     include_directories(${Boost_INCLUDE_DIRS})
