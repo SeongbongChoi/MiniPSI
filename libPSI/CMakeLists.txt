@@ -104,7 +104,7 @@ message(STATUS "sodium lib directory: ${SODIUM_Lib_Dirs}")
 #                 Link Boost                #
 #############################################
 
-set(BOOST_ROOT "${libOTe_Dirs}/cryptoTools/thirdparty/linux/boost/")
+set(BOOST_ROOT "${libOTe_Dirs}cryptoTools/thirdparty/linux/boost/")
 set(BOOST_INCLUDEDIR "${BOOST_ROOT}stage/include")
 set(BOOST_LIBRARYDIR "${BOOST_ROOT}stage/lib")  
 
@@ -118,7 +118,10 @@ if (Boost_FOUND)
 else()
     message(FATAL_ERROR "Failed to find Boost at ${BOOST_ROOT}")
 endif()
- 
+
+message(STATUS "Boost library: ${Boost_LIBRARIES}")
+message(STATUS "Boost include directory: ${BOOST_INCLUDEDIR}")
+message(STATUS "Boost lib directory: ${BOOST_LIBRARYDIR}")
 
 #############################################
 #                 Link Miracl               #
