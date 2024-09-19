@@ -297,7 +297,7 @@ namespace osuCrypto
 
 		std::array<ZZ_p*, first2Slices> zzY;
 		for (u64 i = 0; i < first2Slices; i++)
-			zzY[i] = new ZZ_p[inputs.size()];
+			zzY[i] = new ZZ_p[numEvalPoint];
 
 		ZZ zz;
 
